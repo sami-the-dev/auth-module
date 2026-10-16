@@ -1,0 +1,14 @@
+{
+  "name": "auth-module",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "pnpm install && pnpm --dir backend install && pnpm --dir frontend install",
+    "db": "docker compose up -d --wait mongo",
+    "dev": "pnpm db && concurrently -k -n api,web -c blue,green \"pnpm --dir backend start:dev\" \"pnpm --dir frontend dev\"",
+    "stop": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
